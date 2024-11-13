@@ -1,32 +1,42 @@
+// Asignación del evento de click al enlace "tema" asociado a la función cambiarTema()
 document.getElementById("tema").addEventListener("click", cambiarTema);
 
+// Función para cambiar el tema de la página (Oscuro / Claro)
 function cambiarTema() {
 
     let src = document.getElementById("temaImg").src;
 
     if (src.includes("sol.png")) {
-        document.getElementById("temaImg").src = "img/luna.png";
-        document.getElementById("body").removeAttribute("class");
-        document.getElementById("body").classList.add("temaClaro");
-        document.getElementById("githubIcon").src = "img/githubB.png";
+        cambiarFondo(src);
         cambiarBorder();
         cambiarEnlaces();
         cambiarTemaProyectos();
         cambiarTemaSelector();    
     } else {
-        document.getElementById("temaImg").src = "img/sol.png";
-        document.getElementById("body").removeAttribute("class");
-        document.getElementById("body").classList.add("temaOscuro");
-        document.getElementById("githubIcon").src = "img/githubW.png";
+       cambiarFondo(src)
         cambiarBorder();
         cambiarEnlaces();
         cambiarTemaProyectos();  
         cambiarTemaSelector();
     }
-
-
 }
 
+// Función que cambia el color del fondo y el icono de Github
+function cambiarFondo(elemento) {
+    if (elemento.includes("sol.png")) {
+        document.getElementById("temaImg").src = "img/luna.png";
+        document.getElementById("body").removeAttribute("class");
+        document.getElementById("body").classList.add("temaClaro");
+        document.getElementById("githubIcon").src = "img/githubB.png";
+    }else{
+        document.getElementById("temaImg").src = "img/sol.png";
+        document.getElementById("body").removeAttribute("class");
+        document.getElementById("body").classList.add("temaOscuro");
+        document.getElementById("githubIcon").src = "img/githubW.png"; 
+    }
+}
+
+// Función que cambia el color de los borders
 function cambiarBorder() {
     let containerIdes = document.getElementById("logos");
     let arrayDivs = containerIdes.querySelectorAll("div");
@@ -55,6 +65,7 @@ function cambiarBorder() {
 
 }
 
+// Función que cambia el color de los enlaces
 function cambiarEnlaces() {
     let contenedorEnlaces = document.getElementById("body");
     let enlaces = contenedorEnlaces.querySelectorAll("a");
@@ -81,9 +92,7 @@ function cambiarEnlaces() {
 
 }
 
-
-// FUNCION CAMBIAR TEMA ENLACES PROYECTOS
-
+// Función que cambia el color de los proyectos
 function cambiarTemaProyectos() {
     let containerProyectos = document.getElementById("containerProyectos");
     let enlacesProyectos = containerProyectos.querySelectorAll("div");
@@ -111,7 +120,7 @@ function cambiarTemaProyectos() {
 
 }
 
-// CAMBIAR TEMA SELECTOR
+// Fnción que cambia el color del selector
 function cambiarTemaSelector() {
     let selector = document.getElementById("repositorios");
     if (selector.className.includes("selectorOscuro")) {
@@ -123,19 +132,21 @@ function cambiarTemaSelector() {
     }
 }
 
-// FUNCION PARA DESCARGAR EL CV
+// Asignación del evento de click al enlace "cv" asociado a la función descargarCV()
 document.getElementById("cv").addEventListener("click", descargarCV);
 
+// Función que permite descargar el cv con el nombre que se le ha asignado
 function descargarCV() {
     let enlaceCv = document.getElementById("cv");
     enlaceCv.download = "CV Alberto Sanchez Macias.pdf";
 }
 
 
-// DESPLAZAMIENTO SUAVE DE SCROLL
+// Asignación del evento de click al enlace "enlaceJS" y "enlaceEstudio" asociado a la función scrollSuave()
 document.getElementById("enlaceJS").addEventListener('click',scrollSuave);
 document.getElementById("enlaceEstudio").addEventListener("click",scrollSuave);
 
+// Función para que al pulsar en el enlace asociado la página haga un scroll suave
 function scrollSuave(event) {
     event.preventDefault();
     let targetID = this.getAttribute('href');
@@ -143,7 +154,7 @@ function scrollSuave(event) {
     targetElement.scrollIntoView({ behavior: 'smooth' });
 }
 
-// CAMBIAR IDIOMA
+// Función cambiar idioma (Pendiente de cambios)
 document.getElementById("lenguaje").addEventListener("click", ()=>{
 
     let idioma = document.getElementById("lenguaje");
@@ -158,19 +169,19 @@ document.getElementById("lenguaje").addEventListener("click", ()=>{
     } 
 });
 
+// Función que cuenta el número de proyectos
 function contadorProyectos() {
 
     let numProyectos = document.getElementById("proyectosJS").querySelectorAll("a");
     document.getElementById("tituloProyectos").innerHTML = `Proyectos JS(${numProyectos.length})`;
-
 }
-
+// Llamamiento a la función contadorProyectos()
 contadorProyectos();
 
-// FUNCIÓN REDIRIGIR A REPOSITORIO
-
+// Asignación del evento de click al enlace "selector" asociado a la función irARepositorio()
 document.getElementById("repositorios").addEventListener("change",irARepositorio);
 
+// Función que redirige al repositorio seleccionado en el selector. Te abre una nueva pestaña.
 function irARepositorio() {
     let selector = document.getElementById("repositorios");
     let enlace = selector.value;
