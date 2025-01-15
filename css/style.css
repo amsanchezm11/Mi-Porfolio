@@ -177,7 +177,10 @@ body h1 {
 .container-logos {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 5px;
+    width: 40%;
+    justify-content: center;
 }
 
 .border-B {
